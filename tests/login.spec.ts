@@ -77,12 +77,15 @@ test.describe("SL Testar Login da Sauce Demo", () => {
     await test.step("E EU PRENCHER INPUT PASSWORD", async () => {
       await page.locator('[data-test="password"]').fill("secret_sauceee")
     });
-    await test.step("E EU CLICAR NO BOTÃO DE LOGIN", async () => {
+     await test.step("E O BOTÃO DE LOGIN ESTAR HABILITADO", async () => {
       await expect(page.locator('[data-test="login-button"]')).toBeEnabled()
+    })
+    await test.step("E EU CLICAR NO BOTÃO DE LOGIN", async () => {
+      await page.locator('[data-test="login-button"]').click()
     });
     await test.step("ENTÃO VALIDO LOGIN FALHOU", async () => {
-      await page.locator('[data-test="login-button"]').click()
       await expect(page.locator('[data-test="error"]')).toBeVisible()
+      await expect(page).toHaveURL("https://www.saucedemo.com/");
     });
   })
   
