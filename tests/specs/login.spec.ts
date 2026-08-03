@@ -102,3 +102,5 @@ test.describe("SL Testar Login da Sauce Demo", () => {
 // POM - PAGE OBJECT MODEL
 
 // coding like a profissional
+
+// fixtures
