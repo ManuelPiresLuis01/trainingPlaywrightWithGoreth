@@ -51,50 +51,51 @@ test.describe("SL Testar Login da Sauce Demo", () => {
       await loginPage.validarPagina();
     });
     await test.step("E EU VER O BOTÃO LOGIN", async () => {
-      await expect(page.locator('[data-test="login-button"]')).toBeVisible();
+      await loginPage.validarVisibilidadeBotaoLogin()
     });
     await test.step("ENTÃO O BOTÃO DEVE ESTAR HABILITADO", async () => {
-      await expect(page.locator('[data-test="login-button"]')).toBeEnabled();
+      await loginPage.validarHabilitaçãoBotaoLogin()
     });
   });
 
   test("SL4 - Validar Login com sucesso", async ({ page }) => {
+    const loginPage = new LoginPage(page);
     await test.step("QUANDO A PAGINA JA ESTIVER CARREGADA", async () => {
-      await expect(page).toHaveURL("https://www.saucedemo.com/");
+      await loginPage.validarPagina();
     });
     await test.step("E EU PRENCHER INPUT USERNAME", async () => {
-      await page.locator('[data-test="username"]').fill(USERNAME);
+      await loginPage.preencherInput("USERNAME",USERNAME)
     });
     await test.step("E EU PRENCHER INPUT PASSWORD", async () => {
-      await page.locator('[data-test="password"]').fill(PASSWORD);
+      await loginPage.preencherInput("PASSWORD",PASSWORD)
     });
     await test.step("E EU CLICAR NO BOTÃO DE LOGIN", async () => {
-      await page.locator('[data-test="login-button"]').click();
+      await loginPage.clicarBotaoLogin()
     });
     await test.step("ENTÃO VALIDO LOGIN COM SUCESSO", async () => {
-      await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+      await loginPage.validarLoginSucesso()
     });
   });
 
   test("SL5 - Validar lOGIN COM CREDENCIAIS ERRADAS", async ({ page }) => {
+    const loginPage = new LoginPage(page);
     await test.step("QUANDO A PAGINA JA ESTIVER CARREGADA", async () => {
-      await expect(page).toHaveURL("https://www.saucedemo.com/");
+      await loginPage.validarPagina();
     });
     await test.step("E EU PRENCHER INPUT USERNAME", async () => {
-      await page.locator('[data-test="username"]').fill("standard_userrr");
+      await loginPage.preencherInput("USERNAME",USERNAME)
     });
     await test.step("E EU PRENCHER INPUT PASSWORD", async () => {
-      await page.locator('[data-test="password"]').fill("secret_sauceee");
+      await loginPage.preencherInput("PASSWORD",PASSWORD)
     });
     await test.step("E O BOTÃO DE LOGIN ESTAR HABILITADO", async () => {
-      await expect(page.locator('[data-test="login-button"]')).toBeEnabled();
+      await loginPage.validarHabilitaçãoBotaoLogin();
     });
     await test.step("E EU CLICAR NO BOTÃO DE LOGIN", async () => {
-      await page.locator('[data-test="login-button"]').click();
+      await loginPage.clicarBotaoLogin();
     });
     await test.step("ENTÃO VALIDO LOGIN FALHOU", async () => {
-      await expect(page.locator('[data-test="error"]')).toBeVisible();
-      await expect(page).toHaveURL("https://www.saucedemo.com/");
+     await loginPage.validarLoginFalhou()
     });
   });
 });
