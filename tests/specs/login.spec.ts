@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const USERNAME = process.env.USERNAME || "";
+const USERNAME = process.env.USER || "";
 const PASSWORD = process.env.PASSWORD || "";
 
 test.beforeEach(async ({ page }) => {
@@ -83,10 +83,10 @@ test.describe("SL Testar Login da Sauce Demo", () => {
       await loginPage.validarPagina();
     });
     await test.step("E EU PRENCHER INPUT USERNAME", async () => {
-      await loginPage.preencherInput("USERNAME",USERNAME)
+      await loginPage.preencherInput("USERNAME", "Goreth")
     });
     await test.step("E EU PRENCHER INPUT PASSWORD", async () => {
-      await loginPage.preencherInput("PASSWORD",PASSWORD)
+      await loginPage.preencherInput("PASSWORD", "Pires")
     });
     await test.step("E O BOTÃO DE LOGIN ESTAR HABILITADO", async () => {
       await loginPage.validarHabilitaçãoBotaoLogin();
