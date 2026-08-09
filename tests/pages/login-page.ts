@@ -77,7 +77,7 @@ class LoginPage {
 
   async validarLoginSucesso() {
     await test.step("VALIDAR LOGIN COM SUCESSO", async () => {
-      await expect(this.page).toHaveURL("https://www.saucedemo.com/inventory.html");
+      await expect(this.page).toHaveURL("inventory.html");
     })
   }
 
