@@ -4,11 +4,15 @@ class LoginPage {
   readonly page: Page;
   readonly username: Locator;
   readonly password: Locator;
+  readonly botaoLogin: Locator;
+  readonly loginError: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.username = page.locator('[data-test="username"]');
     this.password = page.locator('[data-test="password"]');
+    this.botaoLogin = page.locator('[data-test="login-button"]');
+    this.loginError = page.locator('[data-test="error"]');
   }
 
   async validarPagina() {
@@ -55,19 +59,19 @@ class LoginPage {
 
   async validarVisibilidadeBotaoLogin() {
     await test.step("VALIDAR VISIBILIDADE DO BOTÃO LOGIN", async () => {
-      await expect(this.page.locator('[data-test="login-button"]')).toBeVisible()
+      await expect(this.botaoLogin).toBeVisible()
     })
   }
 
   async validarHabilitaçãoBotaoLogin() {
     await test.step("VALIDAR SE O BOTÃO DE LOGIN ESTÁ HABILITADO", async () => {
-      await expect(this.page.locator('[data-test="login-button"]')).toBeEnabled();
+      await expect(this.botaoLogin).toBeEnabled();
     })
   }
 
   async clicarBotaoLogin() {
     await test.step("CLICAR NO BOTÃO DE LOGIN", async () => {
-      await this.page.locator('[data-test="login-button"]').click();
+      await this.botaoLogin.click();
     })
   }
 
@@ -79,7 +83,7 @@ class LoginPage {
 
   async validarLoginFalhou() {
     await test.step("ENTÃO VALIDO LOGIN FALHOU", async () => {
-      await expect(this.page.locator('[data-test="error"]')).toBeVisible();
+      await expect(this.loginError).toBeVisible();
       await expect(this.page).toHaveURL("https://www.saucedemo.com/");
     })
   }
