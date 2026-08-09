@@ -15,8 +15,6 @@ Desenvolver habilidades em:
 - Tratamento de casos de sucesso e erro
 - Boas práticas em testes automatizados
 
-## 🛠️ Stack Tecnológico
-
 - **Linguagem:** TypeScript (100%)
 - **Framework de Testes:** Playwright
 - **Metodologia:** BDD (Behavior Driven Development)
