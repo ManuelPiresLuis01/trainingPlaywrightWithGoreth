@@ -98,6 +98,72 @@ test.describe("SL Testar Login da Sauce Demo", () => {
      await loginPage.validarLoginFalhou()
     });
   });
+
+  test("SL6 - VALIDAR lOGIN COM INPUTS VAZIAS", async ({ page }) => {
+    const loginPage = new LoginPage(page)
+    await test.step("QUANDO A PÁGINA JÁ ESTIVER CARREGADA", async () => {
+      await loginPage.validarPagina();
+    });
+    await test.step("E EU NÃO PREENCHER A INPUT USERNAME", async () => {
+      await loginPage.preencherInput("USERNAME", "")
+    });
+      await test.step("E EU NÃO PREENCHER A INPUT PASSWORD", async () => {
+        await loginPage.preencherInput("PASSWORD", "")
+      });
+    await test.step("E O BOTÃO DE LOGIN ESTIVER HABILITADO", async () => {
+      await loginPage.validarHabilitaçãoBotaoLogin()
+    });
+    await test.step("E EU CLICAR NO BOTÃO DE LOGIN", async () => {
+      await loginPage.clicarBotaoLogin()
+    });
+    await test.step("ENTÃO VALIDO QUE O LOGIN FALHOU", async () => {
+      await loginPage.validarLoginFalhou()
+    });
+  })
+
+  test("SL7 - VALIDAR lOGIN COM INPUT USERNAME VAZIA", async ({ page }) => {
+    const loginPage = new LoginPage(page)
+    await test.step("QUANDO A PÁGINA JÁ ESTIVER CARREGADA", async () => {
+      await loginPage.validarPagina();
+    });
+    await test.step("E EU NÃO PREENCHER A INPUT USERNAME", async () => {
+      await loginPage.preencherInput("USERNAME", "")
+    });
+      await test.step("E EU PREENCHER A INPUT PASSWORD", async () => {
+        await loginPage.preencherInput("PASSWORD", PASSWORD)
+      });
+    await test.step("E O BOTÃO DE LOGIN ESTIVER HABILITADO", async () => {
+      await loginPage.validarHabilitaçãoBotaoLogin()
+    });
+    await test.step("E EU CLICAR NO BOTÃO DE LOGIN", async () => {
+      await loginPage.clicarBotaoLogin()
+    });
+    await test.step("ENTÃO VALIDO QUE O LOGIN FALHOU", async () => {
+      await loginPage.validarLoginFalhou()
+    });
+  })
+
+  test("SL8 - VALIDAR lOGIN COM INPUT PASSWORD VAZIA", async ({ page }) => {
+    const loginPage = new LoginPage(page)
+    await test.step("QUANDO A PÁGINA JÁ ESTIVER CARREGADA", async () => {
+      await loginPage.validarPagina();
+    });
+    await test.step("E EU PREENCHER A INPUT USERNAME", async () => {
+      await loginPage.preencherInput("USERNAME", USERNAME)
+    });
+      await test.step("E EU PREENCHER A INPUT PASSWORD", async () => {
+        await loginPage.preencherInput("PASSWORD", "")
+      });
+    await test.step("E O BOTÃO DE LOGIN ESTIVER HABILITADO", async () => {
+      await loginPage.validarHabilitaçãoBotaoLogin()
+    });
+    await test.step("E EU CLICAR NO BOTÃO DE LOGIN", async () => {
+      await loginPage.clicarBotaoLogin()
+    });
+    await test.step("ENTÃO VALIDO QUE O LOGIN FALHOU", async () => {
+      await loginPage.validarLoginFalhou()
+    });
+  })
 });
 
 // POM - PAGE OBJECT MODEL
