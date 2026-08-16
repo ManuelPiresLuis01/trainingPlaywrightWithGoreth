@@ -164,4 +164,29 @@ test.describe("SL Testar Login da Sauce Demo", () => {
       await loginPage.validarLoginFalhou()
     });
   })
+  test("SL9 - VALIDAR A COR DO BOTÃO DE LOGIN", async ({ page }) => {
+    const loginPage = new LoginPage(page)
+    await test.step("QUANDO A PÁGINA JÁ ESTIVER CARREGADA", async () => {
+      await loginPage.validarPagina();
+    });
+    await test.step("E O BOTÃO DE LOGIN ESTAR HABILITADO", async () => {
+      await loginPage.validarHabilitaçãoBotaoLogin();
+    });
+    await test.step("ENTÃO VALIDO QUE A COR DO BOTÃO ESTÁ CORRECTA", async () => {
+      await loginPage.validarCorBotaoLogin()
+    });
+  });
+
+  test("SL10 - VALIDAR SE O LOGIN TEM O TÍTULO SWAG LABS", async ({page}) => {
+    const loginPage = new LoginPage(page)
+    await test.step("QUANDO A PÁGINA JÁ ESTIVER CARREGADA", async () => {
+      await loginPage.validarPagina();
+    });
+    await test.step("E VERIFICAR SE EXISTE O TITULO SWAG LABS", async () => {
+      await loginPage.validarExistenciaDoTitulo();
+    });
+    await test.step("ENTAO VALIDO QUE O TÍTULO EXISTE", async () => {
+      await loginPage.validarTituloDoLogin();
+    });
+  })
 });
