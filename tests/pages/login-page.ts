@@ -96,7 +96,7 @@ class LoginPage {
   }
 
   async validarExistenciaDoTitulo() {
-    await test.step("VALIDAR SE EXISTE O TITULO SWAG LABS", async () => {
+    await test.step("VALIDAR EXISTÊNCIA DO TITULO SWAG LABS", async () => {
       await expect(this.page).toHaveTitle("Swag Labs")
     })
   }
