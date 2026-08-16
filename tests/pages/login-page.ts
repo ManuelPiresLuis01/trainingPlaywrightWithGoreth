@@ -7,6 +7,7 @@ class LoginPage {
   readonly botaoLogin: Locator;
   readonly loginError: Locator;
 
+
   constructor(page: Page) {
     this.page = page;
     this.username = page.locator('[data-test="username"]');
@@ -85,6 +86,24 @@ class LoginPage {
     await test.step("ENTÃO VALIDO LOGIN FALHOU", async () => {
       await expect(this.loginError).toBeVisible();
       await expect(this.page).toHaveURL("https://www.saucedemo.com/");
+    })
+  }
+
+  async validarCorBotaoLogin() {
+    await test.step("VALIDAR A COR DO BOTÃO DE LOGIN", async () => {
+      await expect(this.botaoLogin).toHaveCSS('background-color', 'rgb(61, 220, 145)');
+    })
+  }
+
+  async validarExistenciaDoTitulo() {
+    await test.step("VALIDAR SE EXISTE O TITULO SWAG LABS", async () => {
+      await expect(this.page).toHaveTitle("Swag Labs")
+    })
+  }
+
+  async validarTituloDoLogin() {
+    await test.step("VALIDAR TÍTULO DO LOGIN", async () => {
+      await expect(this.page.getByText('Swag Labs')).toBeVisible()
     })
   }
 }
