@@ -18,7 +18,7 @@ class LoginPage {
 
   async validarPagina() {
     await test.step("Validar que a pagina esta carregada", async () => {
-      await expect(this.page).toHaveURL("https://www.saucedemo.com/");
+      await expect.soft(this.page).toHaveURL("https://www.saucedemo.com/");
     });
   }
 
@@ -31,9 +31,9 @@ class LoginPage {
   async validarVisibilidadeInput(input: string) {
     await test.step(`VALIDAR VISIBILIDADE DO INPUT ${input}`, async () => {
       if (input === "USERNAME") {
-        await expect(this.username).toBeVisible();
+        await expect.soft(this.username).toBeVisible();
       } else {
-        await expect(this.password).toBeVisible();
+        await expect.soft(this.password).toBeVisible();
       }
     });
   }
@@ -41,9 +41,9 @@ class LoginPage {
   async validarHabilitacaoInput(input: string) {
     await test.step(`VALIDAR HABILITAÇÃO DO INPUT ${input}`, async () => {
       if (input === "USERNAME") {
-        await expect(this.username).toBeEnabled();
+        await expect.soft(this.username).toBeEnabled();
       } else if (input === "PASSWORD") {
-        await expect(this.password).toBeEnabled();
+        await expect.soft(this.password).toBeEnabled();
       }
     });
   }
@@ -60,13 +60,13 @@ class LoginPage {
 
   async validarVisibilidadeBotaoLogin() {
     await test.step("VALIDAR VISIBILIDADE DO BOTÃO LOGIN", async () => {
-      await expect(this.botaoLogin).toBeVisible()
+      await expect.soft(this.botaoLogin).toBeVisible()
     })
   }
 
   async validarHabilitaçãoBotaoLogin() {
     await test.step("VALIDAR SE O BOTÃO DE LOGIN ESTÁ HABILITADO", async () => {
-      await expect(this.botaoLogin).toBeEnabled();
+      await expect.soft(this.botaoLogin).toBeEnabled();
     })
   }
 
@@ -78,32 +78,32 @@ class LoginPage {
 
   async validarLoginSucesso() {
     await test.step("VALIDAR LOGIN COM SUCESSO", async () => {
-      await expect(this.page).toHaveURL("/inventory.html");
+      await expect.soft(this.page).toHaveURL("/inventory.html");
     })
   }
 
   async validarLoginFalhou() {
     await test.step("ENTÃO VALIDO LOGIN FALHOU", async () => {
-      await expect(this.loginError).toBeVisible();
-      await expect(this.page).toHaveURL("https://www.saucedemo.com/");
+      await expect.soft(this.loginError).toBeVisible();
+      await expect.soft(this.page).toHaveURL("https://www.saucedemo.com/");
     })
   }
 
   async validarCorBotaoLogin() {
     await test.step("VALIDAR A COR DO BOTÃO DE LOGIN", async () => {
-      await expect(this.botaoLogin).toHaveCSS('background-color', 'rgb(61, 220, 145)');
+      await expect.soft(this.botaoLogin).toHaveCSS('background-color', 'rgb(61, 220, 145)');
     })
   }
 
   async validarExistenciaDoTitulo() {
     await test.step("VALIDAR EXISTÊNCIA DO TITULO SWAG LABS", async () => {
-      await expect(this.page).toHaveTitle("Swag Labs")
+      await expect.soft(this.page).toHaveTitle("Swag Labs")
     })
   }
 
   async validarTituloDoLogin() {
     await test.step("VALIDAR TÍTULO DO LOGIN", async () => {
-      await expect(this.page.getByText('Swag Labs')).toBeVisible()
+      await expect.soft(this.page.getByText('Swag Labs')).toBeVisible()
     })
   }
 }
